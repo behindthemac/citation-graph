@@ -1,5 +1,6 @@
 import requests
 import json
+import csv
 
 
 def get_references(doi):
@@ -25,3 +26,19 @@ def get_references(doi):
     else:
         print(f"No references found for DOI {doi}")
         return []
+
+
+def import_dois_from_csv(filename):
+    """Imports the list of DOIs from a CSV file.
+
+    Args:
+        filename: Filename of the CSV file that contains the list of DOIs
+
+    Returns:
+        dois: List of DOIs in the CSV file
+    """
+    with open(filename, mode ='r') as file:
+        csv_file = csv.reader(file)
+        dois = [row[0] for row in csv_file]
+    return dois
+
